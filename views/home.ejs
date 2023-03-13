@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>goodfoodhunting</h1>
+        <nav>
+            <a href="/dishes/new">share a dish</a>
+            <a href="">don't share</a>
+            <a href="">maybe share</a>
+            <% if (isLoggedIn()) { %>
+            <p>logged in as <%= currentUser.email %></p>
+            <form action="/sessions" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button>Logout</button>
+            </form>
+            <% } %>
+        </nav>
+    </header>
+    <div id="gutters">
+        <div id="content-wrapper">
+            <h2>Latest in map area</h2>
+            <div id="grid">
+            <% for (let dish of dishes) { %>
+            <a href="/dishes/<%= dish.id %>"><div class="card">
+                <img src="<%= dish.image_url %>" alt="">
+                <div class="info-wrapper">
+                    <h3><%= dish.title %></h3>
+                    <h4>at DT's Grill</h4>
+                </div>
+            </div></a>
+            <% } %>  
+            </div>      
+        </div>        
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav><a href="/dishes">Home</a></nav>
+    
+    <h1><%= dish.title %></h1>
+
+    <img src="<%= dish.image_url %>" alt="">
+
+    <!-- add more with more info in database -->
+    <h2>Ingredients: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum perspiciatis dolores minima, nisi, tempore accusantium velit qui ullam aspernatur nulla doloremque, doloribus at. Eveniet veniam nobis officiis reprehenderit sed incidunt?</h2>
+
+    <form action="/dishes/<%= dish.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>delete</button>
+    </form>
+
+    <a href="/dishes/<%= dish.id %>/edit">edit</a>
+</body>
+</html>
