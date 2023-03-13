@@ -25,6 +25,7 @@ const setCurrentUser = require('./middlewares/set_current_user');
 const viewHelpers = require('./middlewares/view_helpers');
 const dishController = require('./controllers/dish_controller');
 const sessionController = require('./controllers/session_controller');
+const userController = require('./controllers/user_controller');
 
 app.set('view engine', 'ejs');
 
@@ -55,10 +56,16 @@ app.use(viewHelpers);
 app.get('/login', (req, res) => {
   res.render('login');
 });
+
+app.use('/users', userController);
+
 app.use('/sessions', sessionController);
 
 app.use('/dishes', dishController);
 
+app.all('*', (req, res) => {
+  res.redirect('/dishes');
+});
 
 app.listen(port, () => {
     console.log(`the server is listening on port ${port}`);
